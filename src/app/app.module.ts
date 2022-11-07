@@ -6,8 +6,12 @@ import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { UsuariosModule } from './usuarios/usuarios.module';
 
-import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
+import { appReducers } from './store/app.reducer';
+import { environment } from '../environments/environment';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +23,11 @@ import { StoreModule } from '@ngrx/store';
     HttpClientModule,
     SharedModule,
     UsuariosModule,
-    StoreModule.forRoot({}, {})
+    StoreModule.forRoot(appReducers),
+    StoreDevtoolsModule.instrument({ 
+      maxAge: 25, 
+      logOnly: environment.production 
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
