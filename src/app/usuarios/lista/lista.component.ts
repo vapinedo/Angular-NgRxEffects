@@ -16,6 +16,8 @@ export class ListaComponent implements OnInit {
 
   ngOnInit(): void {
     // this.users = this.usuarioSvc.getUsers();
+    this.store.select("usuarios")
+      .subscribe(state => this.users = state.users);
     this.store.dispatch(cargarUsuarios())
   }
 
