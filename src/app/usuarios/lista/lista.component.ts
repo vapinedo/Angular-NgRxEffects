@@ -8,13 +8,12 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class ListaComponent implements OnInit {
 
+  users: any;
+
   constructor(public usuarioSvc: UsuarioService) { }
 
   ngOnInit(): void {
-    this.usuarioSvc.getUsers()
-      .subscribe(users => {
-        console.log(users);
-      });
+    this.users = this.usuarioSvc.getUsers();
   }
 
 }
