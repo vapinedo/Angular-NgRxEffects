@@ -29,7 +29,11 @@ const _usuariosReducer = createReducer(
         ...state, 
         loaded: false , 
         loading: false,
-        error: payload
+        error: {
+            url: payload.url,
+            name: payload.name,
+            message: payload.message
+        }
     })),
 );
 
