@@ -7,7 +7,7 @@ import { map } from 'rxjs';
 })
 export class UsuarioService {
 
-  private url = "https://reqres.in/apix";
+  private url = "https://reqres.in/api";
 
   constructor(private http: HttpClient) { }
 

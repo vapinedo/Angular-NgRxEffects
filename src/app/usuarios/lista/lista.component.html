@@ -1,8 +1,22 @@
-<div class="row row-cols-1 row-cols-md-3 g-4">
+<div *ngIf="isLoading; else content" class="alert alert-primary" role="alert">
+  Loading...
+</div>
 
+<div *ngIf="error; else content" class="alert alert-danger" role="alert">
+  <h4>Oops, we got an error</h4>
+  <hr>
+  <pre>{{ error | json }}</pre>
+</div>
+
+<ng-template #content>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
     <div class="col" *ngFor="let user of users">
       <div class="card">
-        <img [src]="user.avatar" class="card-img-top" [alt]="user.last_first_name">
+        <img
+          [src]="user.avatar"
+          class="card-img-top"
+          [alt]="user.last_first_name"
+        />
         <div class="card-body">
           <h5 class="card-title">{{ user.first_name }} {{ user.last_name }}</h5>
           <p class="card-text">{{ user.email }}</p>
@@ -10,5 +24,5 @@
         </div>
       </div>
     </div>
-
   </div>
+</ng-template>

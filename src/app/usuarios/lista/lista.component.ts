@@ -11,13 +11,20 @@ import { AppState } from 'src/app/store/app.reducer';
 export class ListaComponent implements OnInit {
 
   users: any;
+  isLoading: boolean = false;
+  error: any;
 
   constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
     // this.users = this.usuarioSvc.getUsers();
     this.store.select("usuarios")
-      .subscribe(state => this.users = state.users);
+      .subscribe(state => {
+        this.users = state.users;
+        this.isLoading = state.loading;
+        this.error = state.error;
+      });
+
     this.store.dispatch(cargarUsuarios())
   }
 
