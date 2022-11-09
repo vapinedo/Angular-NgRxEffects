@@ -11,12 +11,20 @@ import { cargarUsuario } from '../../store/actions/user.actions';
 })
 export class UsuarioComponent implements OnInit {
 
+  user: any;
+
   constructor(
     private store: Store<AppState>,
     private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    this.store.select("usuario")
+      .subscribe(state => {
+        console.log({state});
+        this.user = state.user;
+      });
+
     this.activatedRoute.params.subscribe(({id}) => {
       this.store.dispatch(cargarUsuario({ id }));
     });

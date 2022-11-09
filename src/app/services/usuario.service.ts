@@ -19,7 +19,7 @@ export class UsuarioService {
   }
 
   getUserById(id: string): Observable<any> {
-    return this.http.get(`${this.url}/user/${id}`)
+    return this.http.get(`${this.url}/users/${id}`)
       .pipe(
         map((response: any) => response.data)
       );
